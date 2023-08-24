@@ -41,6 +41,26 @@ class SortAlgorithm:
                 j += 1
                 k += 1
 
+    @staticmethod
+    def quick_sort(arr, low, high):
+      if low < high:
+          pi = SortAlgorithm.partition(arr, low, high)
+
+          SortAlgorithm.quick_sort(arr, low, pi - 1)
+          SortAlgorithm.quick_sort(arr, pi + 1, high)
+
+    @staticmethod
+    def partition(arr, low, high):
+        pivot = arr[high]
+        i = low - 1
+        for j in range(low, high):
+            if arr[j] < pivot:
+                i += 1
+                arr[i], arr[j] = arr[j], arr[i]
+        arr[i + 1], arr[high] = arr[high], arr[i + 1]
+        return i + 1
+    
+    
 if __name__ == "__main__":
     arr_bubble = [64, 34, 25, 12, 22, 11, 90]
     arr_merge = [12, 11, 13, 5, 6, 7]
@@ -54,3 +74,8 @@ if __name__ == "__main__":
     print("Merge Sort:")
     sort_algo.merge_sort(arr_merge)
     print(arr_merge)
+
+    arr_quick = [10, 7, 8, 9, 1, 5]
+    print("Quick Sort:")
+    sort_algo.quick_sort(arr_quick, 0, len(arr_quick) - 1)
+    print(arr_quick)
