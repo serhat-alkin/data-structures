@@ -60,7 +60,17 @@ class SortAlgorithm:
         arr[i + 1], arr[high] = arr[high], arr[i + 1]
         return i + 1
     
+    @staticmethod
+    def insertion_sort(arr):
+        for i in range(1, len(arr)):
+            key = arr[i]
+            j = i - 1
+            while j >= 0 and key < arr[j]:
+                arr[j + 1] = arr[j]
+                j -= 1
+            arr[j + 1] = key
     
+
 if __name__ == "__main__":
     arr_bubble = [64, 34, 25, 12, 22, 11, 90]
     arr_merge = [12, 11, 13, 5, 6, 7]
@@ -78,4 +88,9 @@ if __name__ == "__main__":
     arr_quick = [10, 7, 8, 9, 1, 5]
     print("Quick Sort:")
     sort_algo.quick_sort(arr_quick, 0, len(arr_quick) - 1)
-    print(arr_quick)
+    print(arr_quick),
+    
+    arr_insertion = [12, 11, 13, 5, 6]
+    print("Insertion Sort:")
+    sort_algo.insertion_sort(arr_insertion)
+    print(arr_insertion)
